@@ -1,31 +1,17 @@
 package Railway;
 
+import PageObjects.Railway.HomePage;
+import PageObjects.Railway.LoginPage;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import Common.Ultilities;
-import Constant.Constant;
+import Common.Constant.Constant;
 
+public class TC01 extends AfterBefore {
 
-public class LoginTest {
-
-    @BeforeMethod
-    public void beforeMethod(){
-        System.out.println("Pre-condition");
-        System.setProperty("webdriver.chrome.driver","D:\\SATT\\chromedriver\\chromedriver.exe");
-        Constant.WEBDRIVER = new ChromeDriver();
-//        Constant.WEBDRIVER.manage().window().maximize();
-    }
-
-    @AfterMethod
-    public void afterMethod(){
-        System.out.println("Post-condition");
-
-        Constant.WEBDRIVER.quit();
-    }
 
     @Test
     public void TC01(){
