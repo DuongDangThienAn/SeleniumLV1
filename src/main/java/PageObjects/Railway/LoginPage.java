@@ -22,7 +22,8 @@ public class LoginPage extends GeneralPage {
 
 
 
-    //Methods
+
+
 
     //Login method return HomePage
     public HomePage login(String username, String password){
@@ -35,5 +36,6 @@ public class LoginPage extends GeneralPage {
         //Land on Home Page
         return new HomePage();
     }
+
 
 }
