@@ -9,13 +9,14 @@ public class GeneralPage {
     // Locators
     private final By tabLogin = By.xpath("//div[@id='menu']//a[@href='/Account/Login.cshtml']");
     private final By tabLogout = By.xpath("//div[@id='menu']//a[@href='/Account/Logout']");
+    private final By tabBookTicket = By.xpath("//div[@id='menu']//a[@href='/Page/BookTicketPage.cshtml']");
+    private final By tabContact = By.xpath("//div[@id='menu']//a[@href='/Page/Contact.cshtml']");
+    private final By tabRegister = By.xpath("//div[@id='menu']//a[@href='/Account/Register.cshtml']");
+
     private final By lbWelcomeMessage = By.xpath("//div[@class='account']/strong");
     private final By lbEmailErrorMessage = By.xpath("//li[@class=\"username\"]/./label[@class=\"validation-error\"]");
     private final By lbLoginErrorMessage = By.xpath("//p[@class='message error LoginForm']");
 
-
-    private final By tabBookTicket = By.xpath("//div[@id='menu']//a[@href='/Page/BookTicketPage.cshtml']");
-    private final By tabContact = By.xpath("//div[@id='menu']//a[@href='/Page/Contact.cshtml']");
 
 
     //Getter methods for retrieving WebElements
@@ -48,6 +49,9 @@ public class GeneralPage {
         return Constant.WEBDRIVER.findElement(tabContact);
     }
 
+    protected WebElement getTabRegister(){
+        return Constant.WEBDRIVER.findElement(tabRegister);
+    }
 
     //Page Methods
     public String getWelcomeMessage(){
@@ -70,6 +74,11 @@ public class GeneralPage {
     public ContactPage gotoContactPage(){
         this.getTabContact().click();
         return new ContactPage();
+    }
+
+    public RegisterPage gotoRegisterPage(){
+        this.getTabRegister().click();
+        return new RegisterPage();
     }
 
     public LoginPage gotoLoginPage(){
