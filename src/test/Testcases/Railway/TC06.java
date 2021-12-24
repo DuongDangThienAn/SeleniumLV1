@@ -32,7 +32,7 @@ public class TC06 extends AfterBefore{
         String actualCreateAccountText = homePage.getTextLnkCreateAccount();
         String expectedCreateAccountText = "create an account";
 
-        Assert.assertEquals(actualCreateAccountText,expectedCreateAccountText,"Home doesn't displayed correctly");
+        Assert.assertEquals(actualCreateAccountText,expectedCreateAccountText,"Homepage doesn't display correctly");
 
 
     }
