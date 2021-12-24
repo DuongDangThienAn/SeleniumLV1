@@ -3,6 +3,7 @@ package PageObjects.Railway;
 import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class GeneralPage {
     // Locators
@@ -14,6 +15,8 @@ public class GeneralPage {
 
 
     private final By tabBookTicket = By.xpath("//div[@id='menu']//a[@href='/Page/BookTicketPage.cshtml']");
+    private final By tabContact = By.xpath("//div[@id='menu']//a[@href='/Page/Contact.cshtml']");
+
 
     //Getter methods for retrieving WebElements
     protected  WebElement getTabLogin(){
@@ -41,6 +44,10 @@ public class GeneralPage {
         return Constant.WEBDRIVER.findElement(tabBookTicket);
     }
 
+    protected WebElement getTabContact(){
+        return Constant.WEBDRIVER.findElement(tabContact);
+    }
+
 
     //Page Methods
     public String getWelcomeMessage(){
@@ -60,8 +67,18 @@ public class GeneralPage {
         return new BookTicketPage();
     }
 
+    public ContactPage gotoContactPage(){
+        this.getTabContact().click();
+        return new ContactPage();
+    }
+
     public LoginPage gotoLoginPage(){
         this.getTabLogin().click();
         return new LoginPage();
+    }
+
+    public HomePage getLogOut(){
+        this.getTabLogout().click();
+        return new HomePage();
     }
 }

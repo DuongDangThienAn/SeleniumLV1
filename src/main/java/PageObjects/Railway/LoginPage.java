@@ -26,7 +26,7 @@ public class LoginPage extends GeneralPage {
 
 
     //Login method return HomePage
-    public HomePage login(String username, String password){
+    public LoginPage login(String username, String password){
         //Submit login credentials
         PageFactory.initElements(Constant.WEBDRIVER,this);
         txtUsername.sendKeys(username);
@@ -34,7 +34,21 @@ public class LoginPage extends GeneralPage {
         btnLogin.click();
 
         //Land on Home Page
-        return new HomePage();
+        return this;
+    }
+
+    public void loginLoop(String username, String password, int time){
+
+        PageFactory.initElements(Constant.WEBDRIVER, this);
+        for (int i = 0; i <= time;i++) {
+            txtUsername.sendKeys(username);
+            txtPassword.sendKeys(password);
+            btnLogin.click();
+        }
+    }
+
+    public String getErrorMessage(){
+        return this.lbErrorMessage.getText();
     }
 
 
