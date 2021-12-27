@@ -20,7 +20,7 @@ public class HomePage extends GeneralPage {
         return this;
     }
 
-    public String getTextLnkCreateAccount(){
+    public String getCreateAccountLinkText(){
         PageFactory.initElements(Constant.WEBDRIVER,this);
         return this.lnkCreateAccount.getText();
     }

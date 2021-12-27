@@ -11,7 +11,6 @@ public class ContactPage extends GeneralPage{
     private WebElement txaContactPageTitle;
 
 
-
     //Methods
     public String getContactPageTitle(){
         PageFactory.initElements(Constant.WEBDRIVER,this);

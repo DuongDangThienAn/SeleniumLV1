@@ -33,7 +33,7 @@ public class TC06 extends TestBase {
 
         System.out.println("STEP-04:Click on 'Log out' Tab");
         contactPage.getLogOut();
-        String actualCreateAccountText = homePage.getTextLnkCreateAccount();
+        String actualCreateAccountText = homePage.getCreateAccountLinkText();
         String expectedCreateAccountText = "create an account";
         Assert.assertEquals(actualCreateAccountText,expectedCreateAccountText,"Homepage doesn't display correctly");
 
