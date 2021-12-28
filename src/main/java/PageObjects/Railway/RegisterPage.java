@@ -1,6 +1,7 @@
 package PageObjects.Railway;
 
 import Common.Constant.Constant;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -25,6 +26,14 @@ public class RegisterPage extends GeneralPage{
     @FindBy (xpath = "//div[@id='content']/p")
     private WebElement txaRegisterSuccessfullyMsg;
 
+    //Locator
+    private final By lbRegisterErrorMsg = By.xpath("//div[@id='content']/p[@class='message error']");
+
+    //Element
+    protected WebElement getLbRegisterErrorMsg(){
+        return Constant.WEBDRIVER.findElement(lbRegisterErrorMsg);
+    }
+
     //Methods
     public RegisterPage register(String email, String password, String confirm_pass, String PID){
 
@@ -41,5 +50,9 @@ public class RegisterPage extends GeneralPage{
     public String getRegisterSuccessfullyMsg(){
         PageFactory.initElements(Constant.WEBDRIVER,this);
         return this.txaRegisterSuccessfullyMsg.getText();
+    }
+
+    public String getRegisterErrorMessage(){
+        return this.getLbRegisterErrorMsg().getText();
     }
 }

@@ -19,7 +19,7 @@ public class TC07 extends TestBase {
         homePage.gotoRegisterPage();
 
         System.out.println("STEP-03: Enter valid information into all field");
-        registerPage.register(Constant.generateRandomEmail(),Constant.PASSWORD,Constant.PASSWORD,Constant.generatePID());
+        registerPage.register(Constant.generateRandomEmail(),Constant.UNREGISTERED_PASSWORD,Constant.CONFIRM_PASSWORD,Constant.generatePID());
 
         String actualMsg = registerPage.getRegisterSuccessfullyMsg();
         String expectedMsg = "Registration Confirmed! You can now log in to the site.";
