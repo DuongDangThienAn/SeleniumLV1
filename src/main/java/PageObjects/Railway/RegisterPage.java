@@ -8,48 +8,60 @@ import org.openqa.selenium.support.PageFactory;
 
 public class RegisterPage extends GeneralPage{
 
-    @FindBy (xpath = "//ol/li[@class='email']/input[@id='email']")
-    private WebElement txtEmail;
-
-    @FindBy (xpath = "//ol/li[@class='password']/input[@id='password']")
-    private WebElement txtPassword;
-
-    @FindBy (xpath = "//ol/li[@class='confirm-password']/input[@id='confirmPassword']")
-    private WebElement txtConfirmPassword;
-
-    @FindBy (xpath = "//ol/li[@class='pid-number']/input[@id='pid']")
-    private WebElement txtPID;
-
-    @FindBy (xpath = "//p[@class=\"form-actions\"]/input[@value='Register']")
-    private WebElement btnRegister;
-
-    @FindBy (xpath = "//div[@id='content']/p")
-    private WebElement txaRegisterSuccessfullyMsg;
-
     //Locator
     private final By lbRegisterErrorMsg = By.xpath("//div[@id='content']/p[@class='message error']");
+    private final By txtEmail = By.xpath("//ol/li[@class='email']/input[@id='email']");
+    private final By txtPassword = By.xpath("//ol/li[@class='password']/input[@id='password']");
+    private final By txtConfirmPassword = By.xpath("//ol/li[@class='confirm-password']/input[@id='confirmPassword']");
+    private final By txtPID = By.xpath("//ol/li[@class='pid-number']/input[@id='pid']");
+    private final By btnRegister = By.xpath("//p[@class='form-actions']/input[@value='Register']");
+    private final By lblRegisterSuccessfullyMsg = By.xpath("//div[@id='content']/p");
 
     //Element
     protected WebElement getLbRegisterErrorMsg(){
         return Constant.WEBDRIVER.findElement(lbRegisterErrorMsg);
     }
 
+    protected WebElement getTxtEmail(){
+        return Constant.WEBDRIVER.findElement(txtEmail);
+    }
+
+    protected WebElement getTxtPassword(){
+        return Constant.WEBDRIVER.findElement(txtPassword);
+    }
+
+    protected WebElement getTxtConfirmPassword(){
+        return Constant.WEBDRIVER.findElement(txtConfirmPassword);
+    }
+
+    protected WebElement getTxtPID(){
+        return Constant.WEBDRIVER.findElement(txtPID);
+    }
+
+    protected WebElement getBtnRegister(){
+        return Constant.WEBDRIVER.findElement(btnRegister);
+    }
+
+    protected WebElement getLblRegisterSuccessfullyMsg(){
+        return Constant.WEBDRIVER.findElement(lblRegisterSuccessfullyMsg);
+    }
+
     //Methods
     public RegisterPage register(String email, String password, String confirm_pass, String PID){
 
         PageFactory.initElements(Constant.WEBDRIVER, this);
-        this.txtEmail.sendKeys(email);
-        this.txtPassword.sendKeys(password);
-        this.txtConfirmPassword.sendKeys(confirm_pass);
-        this.txtPID.sendKeys(PID);
-        this.btnRegister.submit();
+        this.getTxtEmail().sendKeys(email);
+        this.getTxtPassword().sendKeys(password);
+        this.getTxtConfirmPassword().sendKeys(confirm_pass);
+        this.getTxtPID().sendKeys(PID);
+        this.getBtnRegister().submit();
 
         return this;
     }
 
     public String getRegisterSuccessfullyMsg(){
         PageFactory.initElements(Constant.WEBDRIVER,this);
-        return this.txaRegisterSuccessfullyMsg.getText();
+        return this.getLblRegisterSuccessfullyMsg().getText();
     }
 
     public String getRegisterErrorMessage(){

@@ -1,5 +1,6 @@
 package Railway;
 
+import Common.Common.StringUtilities;
 import Common.Constant.Constant;
 import PageObjects.Railway.HomePage;
 import PageObjects.Railway.RegisterPage;
@@ -11,8 +12,8 @@ public class TC10 extends TestBase{
     public void TC10(){
         HomePage homePage = new HomePage();
         RegisterPage registerPage = new RegisterPage();
-        final String EMAIL = Constant.generateRandomEmail();
-        final String PID = Constant.generatePID();
+        final String EMAIL = StringUtilities.generateRandomEmail();
+        final String PID = StringUtilities.generatePID();
 
         System.out.println("PRE-CONDITION: Create and activate a new account");
         homePage.open();

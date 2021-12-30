@@ -13,17 +13,4 @@ public class Constant   {
     public static final String NEW_PASSWORD = "a123:\"/{}!@$\\";
     public static final String CONFIRM_CHANGE_PASSWORD = "b456:\"/{}!@$\\";
 
-    public static String generateRandomEmail(){
-        String randomString = RandomStringUtils.randomAlphanumeric(3);
-        return "test" + randomString +"@gmail.com";
-    }
-
-    public static String generatePID(){
-        String randomNum = RandomStringUtils.randomNumeric(12);
-        return randomNum;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(generatePID());
-    }
 }

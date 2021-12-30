@@ -1,5 +1,6 @@
 package Railway;
 
+import Common.Common.StringUtilities;
 import Common.Constant.Constant;
 import PageObjects.Railway.HomePage;
 import PageObjects.Railway.RegisterPage;
@@ -19,7 +20,7 @@ public class TC07 extends TestBase {
         homePage.gotoRegisterPage();
 
         System.out.println("STEP-03: Enter valid information into all field");
-        registerPage.register(Constant.generateRandomEmail(),Constant.UNREGISTERED_PASSWORD,Constant.CONFIRM_PASSWORD,Constant.generatePID());
+        registerPage.register(StringUtilities.generateRandomEmail(),Constant.UNREGISTERED_PASSWORD,Constant.CONFIRM_PASSWORD,StringUtilities.generatePID());
 
         String actualMsg = registerPage.getRegisterSuccessfullyMsg();
         String expectedMsg = "Registration Confirmed! You can now log in to the site.";

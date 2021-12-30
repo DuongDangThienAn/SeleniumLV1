@@ -1,5 +1,6 @@
 package Railway;
 
+import Common.Common.StringUtilities;
 import Common.Constant.Constant;
 import PageObjects.Railway.HomePage;
 import PageObjects.Railway.LoginPage;
@@ -14,8 +15,8 @@ public class TC08 extends TestBase {
         HomePage homePage = new HomePage();
         RegisterPage registerPage = new RegisterPage();
         LoginPage loginPage = new LoginPage();
-        final String EMAIL = Constant.generateRandomEmail();
-        final String PID = Constant.generatePID();
+        final String EMAIL = StringUtilities.generateRandomEmail();
+        final String PID = StringUtilities.generatePID();
 
         System.out.println("PRE-CONDITION");
         homePage.open();

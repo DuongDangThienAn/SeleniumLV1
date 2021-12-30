@@ -1,18 +1,19 @@
 package PageObjects.Railway;
 
 import Common.Constant.Constant;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage extends GeneralPage {
 
     //Locator
-    @FindBy (xpath = "//div[@id='content']/div/a[@href='/Account/Register.cshtml']")
-    private WebElement lnkCreateAccount;
-    //Elements
+    private final By lnkCreateAccount = By.xpath("//div[@id='content']/div/a[@href='/Account/Register.cshtml']");
 
-    //Methods
+    //Elements
+    protected WebElement getLnkCreateAccount(){
+        return Constant.WEBDRIVER.findElement(lnkCreateAccount);
+    }
 
     //This is our methods that start our test cases
     public HomePage open(){
@@ -22,6 +23,6 @@ public class HomePage extends GeneralPage {
 
     public String getCreateAccountLinkText(){
         PageFactory.initElements(Constant.WEBDRIVER,this);
-        return this.lnkCreateAccount.getText();
+        return this.getLnkCreateAccount().getText();
     }
 }
