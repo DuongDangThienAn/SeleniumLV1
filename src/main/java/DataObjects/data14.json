@@ -1,0 +1,18 @@
+{
+  "TC14": [
+    {
+      "DepartDate": "1/15/2022",
+      "DepartFrom": "Nha Trang",
+      "ArriveAt": "Sài Gòn",
+      "SeatType": "Soft seat with air conditioner",
+      "TicketAmount": "5"
+    },
+    {
+      "DepartDate": "1/17/2022",
+      "DepartFrom": "Đà Nẵng",
+      "ArriveAt": "Nha Trang",
+      "SeatType": "Hard bed",
+      "TicketAmount": "2"
+    }
+  ]
+}

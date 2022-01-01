@@ -23,7 +23,7 @@ public class TC07 extends TestBase {
         registerPage.register(StringUtilities.generateRandomEmail(),Constant.UNREGISTERED_PASSWORD,Constant.CONFIRM_PASSWORD,StringUtilities.generatePID());
 
         String actualMsg = registerPage.getRegisterSuccessfullyMsg();
-        String expectedMsg = "Registration Confirmed! You can now log in to the site.";
+        String expectedMsg = "You're here";
         Assert.assertEquals(actualMsg,expectedMsg,"User cannot register with valid information");
     }
 }
