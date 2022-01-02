@@ -7,8 +7,13 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.testng.annotations.DataProvider;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Set;
 
 public class DataUtilities extends TestBase{
 
@@ -46,7 +51,32 @@ public class DataUtilities extends TestBase{
         return bookedTicketInfo;
     }
 
+    @DataProvider
+    public static Object[] dataProviderTC15(){
+        JSONParser parser = new JSONParser();
+        JSONObject jsonObject1 = null;
+        try{
+            Object object = parser.parse(new FileReader(Utilities.getProjectPath()+"\\src\\main\\java\\DataObjects\\data15.json"));
+            jsonObject1 = (JSONObject) object;
+        } catch (IOException | ParseException exception){
+            exception.printStackTrace();
+        }
+
+        Object[] ticketPriceData = new Object[1];
+        HashMap<String, String> hashMap = new LinkedHashMap<>();
+        if(jsonObject1 != null){
+            Set<String> jsonObjectKeys = jsonObject1.keySet();
+            for(String jsonObjectKey : jsonObjectKeys){
+                hashMap.put(jsonObjectKey, (String) jsonObject1.get(jsonObjectKey));
+            }
+        } else {
+            System.out.println("Error Data");
+        }
+        ticketPriceData[0] = hashMap;
+        return ticketPriceData;
+    }
+
     public static void main(String[] args) {
-        System.out.println(dataProviderTC14()[0]);
+        System.out.println(dataProviderTC15()[0]);
     }
 }

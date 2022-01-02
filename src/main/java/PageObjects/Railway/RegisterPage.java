@@ -10,6 +10,8 @@ public class RegisterPage extends GeneralPage{
 
     //Locator
     private final By lbRegisterErrorMsg = By.xpath("//div[@id='content']/p[@class='message error']");
+    private final By lbPasswordFieldErrorMsg = By.xpath("//div[@id='content']/form//ol/li[@class='password']/label[@class='validation-error']");
+    private final By lbPIDFieldErrorMsg = By.xpath("//div[@id='content']/form//ol/li[@class='pid-number']/label[@class='validation-error']");
     private final By txtEmail = By.xpath("//ol/li[@class='email']/input[@id='email']");
     private final By txtPassword = By.xpath("//ol/li[@class='password']/input[@id='password']");
     private final By txtConfirmPassword = By.xpath("//ol/li[@class='confirm-password']/input[@id='confirmPassword']");
@@ -46,6 +48,13 @@ public class RegisterPage extends GeneralPage{
         return Constant.WEBDRIVER.findElement(lblRegisterSuccessfullyMsg);
     }
 
+    protected WebElement getLbPasswordFieldErrorMsg(){
+        return Constant.WEBDRIVER.findElement(lbPasswordFieldErrorMsg);
+    }
+
+    protected WebElement getLbPIDFieldErrorMsg(){
+        return Constant.WEBDRIVER.findElement(lbPIDFieldErrorMsg);
+    }
     //Methods
     public RegisterPage register(String email, String password, String confirm_pass, String PID){
 
@@ -66,5 +75,13 @@ public class RegisterPage extends GeneralPage{
 
     public String getRegisterErrorMessage(){
         return this.getLbRegisterErrorMsg().getText();
+    }
+
+    public String getPasswordFieldErrorMsg(){
+        return this.getLbPasswordFieldErrorMsg().getText();
+    }
+
+    public String getPIDFieldErrorMsg(){
+        return this.getLbPIDFieldErrorMsg().getText();
     }
 }

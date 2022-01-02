@@ -16,9 +16,8 @@ public class HomePage extends GeneralPage {
     }
 
     //This is our methods that start our test cases
-    public HomePage open(){
+    public void open(){
         Constant.WEBDRIVER.navigate().to(Constant.RAILWAY_URL);
-        return this;
     }
 
     public String getCreateAccountLinkText(){

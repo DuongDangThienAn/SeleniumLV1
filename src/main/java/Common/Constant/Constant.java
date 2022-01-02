@@ -13,4 +13,5 @@ public class Constant   {
     public static final String NEW_PASSWORD = "a123:\"/{}!@$\\";
     public static final String CONFIRM_CHANGE_PASSWORD = "b456:\"/{}!@$\\";
 
+    public static final String DELETE_TICKET_ID = "1082";
 }
