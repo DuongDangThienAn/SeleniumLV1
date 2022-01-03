@@ -17,6 +17,8 @@ public class BookTicketPage extends GeneralPage{
     private final By ddlTicketAmount = By.xpath("//div[@id='content']//form//ol//li/select[@name='TicketAmount']");
     private final By btnBookTicket = By.xpath("//div[@id='content']//form//input[@type='submit']");
     private final By lblTicketBookedSuccessfully = By.xpath("//div[@id='content']/h1");
+    private final By lblBookTicketErrorMsg = By.xpath("//div[@id='content']/div/p[@class='message error']");
+    private final By lblTicketAmountErrorMsg = By.xpath("//div[@id='content']/div/form//ol/li/label[@class='validation-error']");
 
     private final By tbiDepartStation = By.xpath("//div[@class='DivTable']/table//tr[@class='OddRow']/td[count(//th[text()='Depart Station']/preceding-sibling::th) + 1]");
     private final By tbiArriveStation = By.xpath("//div[@class='DivTable']/table//tr[@class='OddRow']/td[count(//th[text()='Arrive Station']/preceding-sibling::th) + 1]");
@@ -33,6 +35,14 @@ public class BookTicketPage extends GeneralPage{
 
     protected WebElement getLblTicketBookSuccessfully(){
         return Constant.WEBDRIVER.findElement(lblTicketBookedSuccessfully);
+    }
+
+    protected WebElement getLblBookTicketErrorMsg(){
+        return Constant.WEBDRIVER.findElement(lblBookTicketErrorMsg);
+    }
+
+    protected WebElement getLblTicketAmountErrorMsg(){
+        return Constant.WEBDRIVER.findElement(lblTicketAmountErrorMsg);
     }
 
     protected WebElement getBtnBookTicket(){
@@ -135,6 +145,14 @@ public class BookTicketPage extends GeneralPage{
 
     public String getDepartDate(){
         return this.getTbiDepartDate().getText();
+    }
+
+    public String getBookTicketErrorMessage(){
+        return this.getLblBookTicketErrorMsg().getText();
+    }
+
+    public String getTicketAmountErrorMessage(){
+        return this.getLblTicketAmountErrorMsg().getText();
     }
 
     public String getBookTicketDate(){

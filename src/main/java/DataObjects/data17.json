@@ -1,0 +1,11 @@
+{
+  "TC17": [
+    {
+      "DepartDate": "1/15/2022",
+      "DepartFrom": "Nha Trang",
+      "ArriveAt": "Sài Gòn",
+      "SeatType": "Soft seat with air conditioner",
+      "TicketAmount": "10"
+    }
+  ]
+}

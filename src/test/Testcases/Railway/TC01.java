@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class TC01 extends TestBase {
 
 
-    @Test(description = "TC01 - User can log into Railway with valid username and password")
+    @Test(description = "TC01 - User can log in into Railway Website with valid username and password")
     public void TC01() {
         HomePage homePage = new HomePage();
         LoginPage loginPage = new LoginPage();
