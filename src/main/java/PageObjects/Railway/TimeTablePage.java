@@ -6,34 +6,34 @@ import org.openqa.selenium.WebElement;
 
 public class TimeTablePage extends GeneralPage{
     //Locators
-    private final By tbiDepartStation = By.xpath("//div[@id='content']//table//tr[@class='OddRow']/td[text()='Sài Gòn']/preceding-sibling::td[text()='Đà Nẵng']");
-    private final By tbiArriveStation = By.xpath("//div[@id='content']//table//tr[@class='OddRow']/td[text()='Đà Nẵng']/following-sibling::td[text()='Sài Gòn']");
-    private final By lnkCheckPrice = By.xpath("//div[@id='content']//table//tr[@class='OddRow']/td[text()='Đà Nẵng']/following-sibling::td[text()='Sài Gòn']/../td/a[@href='TicketPricePage.cshtml?id1=1&id2=2']");
+    String tbiDepartStation = "//div[@id='content']//table//tr[@class='OddRow']/td[text()='%s']/preceding-sibling::td[text()='%s']";
+    String tbiArriveStation = "//div[@id='content']//table//tr[@class='OddRow']/td[text()='%s']/following-sibling::td[text()='%s']";
+    String lnkCheckPrice = "//div[@id='content']//table//tr[@class='OddRow']/td[text()='%s']/following-sibling::td[text()='%s']/../td/a[@href='TicketPricePage.cshtml?id1=1&id2=2']";
 
     //Elements
-    protected WebElement getTbiDepartStation(){
-        return Constant.WEBDRIVER.findElement(tbiDepartStation);
+    protected WebElement getTbiDepartStation(String depart, String arrive){
+        return Constant.WEBDRIVER.findElement(By.xpath(String.format(tbiDepartStation,arrive,depart)));
     }
 
-    protected WebElement getTbiArriveStation(){
-        return Constant.WEBDRIVER.findElement(tbiArriveStation);
+    protected WebElement getTbiArriveStation(String depart, String arrive){
+        return Constant.WEBDRIVER.findElement(By.xpath(String.format(tbiArriveStation, depart, arrive)));
     }
 
-    protected WebElement getLnkCheckPrice(){
-        return Constant.WEBDRIVER.findElement(lnkCheckPrice);
+    protected WebElement getLnkCheckPrice(String depart, String arrive){
+        return Constant.WEBDRIVER.findElement(By.xpath(String.format(lnkCheckPrice,depart,arrive)));
     }
 
     //Methods
 
-    public String getDepartStation(){
-        return this.getTbiDepartStation().getText();
+    public String getDepartStation(String depart, String arrive){
+        return this.getTbiDepartStation(depart, arrive).getText();
     }
 
-    public String getArriveStation(){
-        return this.getTbiArriveStation().getText();
+    public String getArriveStation(String depart, String arrive){
+        return this.getTbiArriveStation(depart, arrive).getText();
     }
 
-    public void clickCheckPrice(){
-        this.getLnkCheckPrice().click();
+    public void clickCheckPrice(String depart, String arrive){
+        this.getLnkCheckPrice(depart, arrive).click();
     }
 }

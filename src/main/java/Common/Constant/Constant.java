@@ -14,4 +14,7 @@ public class Constant   {
     public static final String CONFIRM_CHANGE_PASSWORD = "b456:\"/{}!@$\\";
 
     public static final String DELETE_TICKET_ID = "1082";
+
+    public static final String DEPART_STATION = "Đà Nẵng";
+    public static final String ARRIVE_STATION = "Sài Gòn";
 }

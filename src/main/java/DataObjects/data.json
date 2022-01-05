@@ -1,0 +1,29 @@
+{
+  "TC14": {
+    "DepartFrom": "Nha Trang",
+    "ArriveAt": "Sài Gòn",
+    "SeatType": "Soft seat with air conditioner",
+    "TicketAmount": "5"
+  },
+  "TC15": {
+    "HS": "90000",
+    "SS": "115000",
+    "SSC": "140000",
+    "HB": "190000",
+    "SB": "240000",
+    "SBC": "290000"
+  },
+  "TC16": {
+    "DepartFrom": "Nha Trang",
+    "ArriveAt": "Sài Gòn",
+    "SeatType": "Soft seat with air conditioner",
+    "TicketAmount": "5"
+  },
+  "TC17": {
+    "DepartFrom": "Nha Trang",
+    "ArriveAt": "Sài Gòn",
+    "SeatType": "Soft seat with air conditioner",
+    "TicketAmount": "10"
+  }
+
+}

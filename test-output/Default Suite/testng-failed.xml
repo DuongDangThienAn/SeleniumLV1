@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default Suite]">
+  <test thread-count="5" name="SeleniumLevel1(failed)">
+    <classes>
+      <class name="Railway.TC15">
+        <methods>
+          <include name="TC15" invocation-numbers="0"/>
+          <include name="beforeMethod"/>
+          <include name="afterMethod"/>
+        </methods>
+      </class> <!-- Railway.TC15 -->
+    </classes>
+  </test> <!-- SeleniumLevel1(failed) -->
+</suite> <!-- Failed suite [Default Suite] -->
