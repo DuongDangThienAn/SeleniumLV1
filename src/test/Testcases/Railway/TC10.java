@@ -12,13 +12,15 @@ public class TC10 extends TestBase{
     public void TC10(){
         HomePage homePage = new HomePage();
         RegisterPage registerPage = new RegisterPage();
-        final String EMAIL = StringUtilities.generateRandomEmail();
-        final String PID = StringUtilities.generatePID();
+        TestPreCondition testPreCondition = new TestPreCondition();
+
+        String email = StringUtilities.generateRandomEmail();
+        String PID = StringUtilities.generatePID();
+        String password = Constant.UNREGISTERED_PASSWORD;
+        String confirmPassword = Constant.CONFIRM_PASSWORD;
 
         System.out.println("PRE-CONDITION: Create and activate a new account");
-        homePage.open();
-        registerPage.gotoRegisterPage();
-        registerPage.register(EMAIL, Constant.UNREGISTERED_PASSWORD, Constant.CONFIRM_PASSWORD, PID);
+        testPreCondition.registerPreCondition(email,password,confirmPassword,PID);
 
         System.out.println("STEP-01: Navigate to QA Railway Website");
         homePage.open();
@@ -29,7 +31,7 @@ public class TC10 extends TestBase{
 
         System.out.println("STEP-03: Enter information of the created account in Pre-condition");
         System.out.println("STEP-04: Click on 'Register' button");
-        registerPage.register(EMAIL, Constant.UNREGISTERED_PASSWORD, Constant.CONFIRM_PASSWORD,PID);
+        registerPage.register(email, password, confirmPassword,PID);
 
         String actualMsg = registerPage.getRegisterErrorMessage();
         String expectedMsg = "This email address is already in use.";

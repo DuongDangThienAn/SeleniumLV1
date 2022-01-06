@@ -16,26 +16,30 @@ public class TC09 extends TestBase{
         RegisterPage registerPage = new RegisterPage();
         LoginPage loginPage = new LoginPage();
         ChangePasswordPage changePasswordPage = new ChangePasswordPage();
-        final String EMAIL = StringUtilities.generateRandomEmail();
-        final String PID = StringUtilities.generatePID();
+        TestPreCondition testPreCondition = new TestPreCondition();
+
+        String EMAIL = StringUtilities.generateRandomEmail();
+        String PID = StringUtilities.generatePID();
+        String password = Constant.UNREGISTERED_PASSWORD;
+        String confirmPassword = Constant.CONFIRM_PASSWORD;
+        String newPassword = Constant.NEW_PASSWORD;
+        String confirmChangePassword = Constant.CONFIRM_CHANGE_PASSWORD;
 
         System.out.println("PRE-CONDITION: Create and activate a new account");
-        homePage.open();
-        registerPage.gotoRegisterPage();
-        registerPage.register(EMAIL, Constant.UNREGISTERED_PASSWORD, Constant.CONFIRM_PASSWORD,PID);
+        testPreCondition.registerPreCondition(EMAIL, password, confirmPassword, PID);
 
         System.out.println("STEP-01: Navigate to QA Railway Website");
         homePage.open();
 
         System.out.println("STEP-02: Login with valid account");
         loginPage.gotoLoginPage();
-        loginPage.login(EMAIL,Constant.UNREGISTERED_PASSWORD);
+        loginPage.login(EMAIL,password);
 
         System.out.println("STEP-03: Click on 'Change Password' tab");
         changePasswordPage.gotoChangePasswordPage();
 
         System.out.println("STEP-04: Enter valid information into 'Current Password' text box but enter 'a123:\"/{}!@$\\' into 'New Password' textbox and 'b456:\"/{}!@$\\' into 'Confirm Password' text box.");
-        changePasswordPage.changePassword(Constant.UNREGISTERED_PASSWORD,Constant.NEW_PASSWORD,Constant.CONFIRM_CHANGE_PASSWORD);
+        changePasswordPage.changePassword(password,newPassword,confirmChangePassword);
 
         String actualMsg = changePasswordPage.getChangePasswordErrorMessage();
         String expectedMsg = "Password change failed. Please correct the errors and try again.";
