@@ -9,27 +9,29 @@ import PageObjects.Railway.TicketPricePage;
 import PageObjects.Railway.TimeTablePage;
 import com.google.gson.JsonObject;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
-
 public class TC15 extends TestBase{
-    @Test(description = "TC15 - 'Ticket price' page displays with ticket details after clicking on 'check price' link in 'Train timetable' page", dataProvider = "data-provider15")
-    public void TC15(String HSColumn,String SSColumn,String SSCColumn,String HBColumn,String SBColumn,String SBCColumn){
-        HomePage homePage = new HomePage();
-        LoginPage loginPage = new LoginPage();
-        TimeTablePage timeTablePage = new TimeTablePage();
-        TicketPricePage ticketPricePage = new TicketPricePage();
-        TestPreCondition testPreCondition = new TestPreCondition();
+    HomePage homePage = new HomePage();
+    LoginPage loginPage = new LoginPage();
+    TimeTablePage timeTablePage = new TimeTablePage();
+    TicketPricePage ticketPricePage = new TicketPricePage();
+    TestPreCondition testPreCondition = new TestPreCondition();
 
-        String email = StringUtilities.generateRandomEmail();
-        String PID = StringUtilities.generatePID();
-        String password = Constant.UNREGISTERED_PASSWORD;
-        String confirmPassword = Constant.CONFIRM_PASSWORD;
+    String email = StringUtilities.generateRandomEmail();
+    String PID = StringUtilities.generatePID();
+    String password = Constant.UNREGISTERED_PASSWORD;
+    String confirmPassword = Constant.CONFIRM_PASSWORD;
 
-        System.out.println("PRE-CONDITION");
+    @BeforeMethod(description = "PRE-CONDITION: Create and activate a new account")
+    public void setTestPreCondition(){
         testPreCondition.registerPreCondition(email,password,confirmPassword,PID);
+    }
+
+    @Test(description = "TC15 - 'Ticket price' page displays with ticket details after clicking on 'check price' link in 'Train timetable' page", dataProvider = "data-provider15")
+    public void TC15(String departStation, String arriveStation, String HSColumn,String SSColumn,String SSCColumn,String HBColumn,String SBColumn,String SBCColumn){
 
         System.out.println("STEP-01: Navigate to QA Railway Website");
         homePage.open();
@@ -40,11 +42,11 @@ public class TC15 extends TestBase{
 
         System.out.println("STEP-03: Click on 'Time Table' tab");
         timeTablePage.gotoTimeTablePage();
-        String expectedTicketPriceTableTitle = "Ticket price from " + timeTablePage.getDepartStation(Constant.DEPART_STATION, Constant.ARRIVE_STATION) + " to " + timeTablePage.getArriveStation(Constant.DEPART_STATION, Constant.ARRIVE_STATION);
+        String expectedTicketPriceTableTitle = "Ticket price from " + departStation + " to " + arriveStation;
 
         System.out.println("STEP-04: Click on 'check price' link of the route from 'Đà Nẵng' to 'Sài Gòn'");
-        Utilities.scrollIntoView();
-        timeTablePage.clickCheckPrice(Constant.DEPART_STATION, Constant.ARRIVE_STATION);
+        Utilities.scrollIntoView(timeTablePage.getLnkCheckPrice(departStation,arriveStation));
+        timeTablePage.clickCheckPrice(departStation, arriveStation);
 
         String[] actualTicketPrices = ticketPricePage.getTicketPriceList();
 
@@ -81,6 +83,8 @@ public class TC15 extends TestBase{
         String filePath = Utilities.getProjectPath()+"\\src\\main\\java\\DataObjects\\data.json";
         JsonObject jsonObject = JsonHelper.getJsonObject(filePath);
         JsonObject dataTC15 = jsonObject.getAsJsonObject(this.getClass().getSimpleName());
+        String departStation = dataTC15.get("DepartStation").getAsString();
+        String arriveStation = dataTC15.get("ArriveStation").getAsString();
         String HSColumn = dataTC15.get("HS").getAsString();
         String SSColumn = dataTC15.get("SS").getAsString();
         String SSCColumn = dataTC15.get("SSC").getAsString();
@@ -89,7 +93,7 @@ public class TC15 extends TestBase{
         String SBCColumn = dataTC15.get("SBC").getAsString();
 
         Object[][] objects = new Object[][]{
-                {HSColumn, SSColumn, SSCColumn, HBColumn, SBColumn, SBCColumn}
+                {departStation, arriveStation, HSColumn, SSColumn, SSCColumn, HBColumn, SBColumn, SBCColumn}
         };
 
         return objects;

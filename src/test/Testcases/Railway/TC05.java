@@ -9,8 +9,8 @@ import org.testng.annotations.Test;
 
 public class TC05 extends TestBase {
 
-    @Test (description = "TC05 - System shows message when user enters wrong password several times")
-    public void TC05(){
+    @Test(description = "TC05 - System shows message when user enters wrong password several times")
+    public void TC05() {
         HomePage homePage = new HomePage();
         LoginPage loginPage = new LoginPage();
 

@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 
 public class TC02 extends TestBase {
 
-    @Test (description = "TC02 - User can't login with blank 'Username' text box")
-    public void TC02(){
+    @Test(description = "TC02 - User can't login with blank 'Username' text box")
+    public void TC02() {
         HomePage homePage = new HomePage();
         LoginPage loginPage = new LoginPage();
 

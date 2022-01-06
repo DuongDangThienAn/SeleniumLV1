@@ -8,8 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TC07 extends TestBase {
-    @Test (description = "TC07 - User can create new account")
-    public void TC07(){
+    @Test(description = "TC07 - User can create new account")
+    public void TC07() {
         HomePage homePage = new HomePage();
         RegisterPage registerPage = new RegisterPage();
 
@@ -20,10 +20,10 @@ public class TC07 extends TestBase {
         homePage.gotoRegisterPage();
 
         System.out.println("STEP-03: Enter valid information into all field");
-        registerPage.register(StringUtilities.generateRandomEmail(),Constant.UNREGISTERED_PASSWORD,Constant.CONFIRM_PASSWORD,StringUtilities.generatePID());
+        registerPage.register(StringUtilities.generateRandomEmail(), Constant.UNREGISTERED_PASSWORD, Constant.CONFIRM_PASSWORD, StringUtilities.generatePID());
 
         String actualMsg = registerPage.getRegisterSuccessfullyMsg();
         String expectedMsg = "You're here";
-        Assert.assertEquals(actualMsg,expectedMsg,"User cannot register with valid information");
+        Assert.assertEquals(actualMsg, expectedMsg, "User cannot register with valid information");
     }
 }

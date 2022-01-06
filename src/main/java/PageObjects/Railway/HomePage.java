@@ -11,17 +11,17 @@ public class HomePage extends GeneralPage {
     private final By lnkCreateAccount = By.xpath("//div[@id='content']/div/a[@href='/Account/Register.cshtml']");
 
     //Elements
-    protected WebElement getLnkCreateAccount(){
+    protected WebElement getLnkCreateAccount() {
         return Constant.WEBDRIVER.findElement(lnkCreateAccount);
     }
 
     //This is our methods that start our test cases
-    public void open(){
+    public void open() {
         Constant.WEBDRIVER.navigate().to(Constant.RAILWAY_URL);
     }
 
-    public String getCreateAccountLinkText(){
-        PageFactory.initElements(Constant.WEBDRIVER,this);
+    public String getCreateAccountLinkText() {
+        PageFactory.initElements(Constant.WEBDRIVER, this);
         return this.getLnkCreateAccount().getText();
     }
 }

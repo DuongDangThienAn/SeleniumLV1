@@ -6,26 +6,28 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
-public class MyTicketPage extends GeneralPage{
+import java.util.List;
+
+public class MyTicketPage extends GeneralPage {
     //Locators
-    private final By btnDeleteTicket = By.xpath("//div[@id='content']//table/tbody/tr[@class='OddRow']/td[count(//th[text()='Operation']/preceding-sibling::th)+1]/input");
+    String btnDeleteTicket = "//div[@id='content']//table/tbody/tr/td[text()='%s']/following-sibling::td[text()='%s']/../td[count(//th[text()='Operation']/preceding-sibling::th)+1]/input";
 
     //Elements
-    public WebElement getBtnDeleteTicket(){
-        return Constant.WEBDRIVER.findElement(btnDeleteTicket);
+    public WebElement getBtnDeleteTicket(String depart, String arrive) {
+        return Constant.WEBDRIVER.findElement(By.xpath(String.format(btnDeleteTicket,depart,arrive)));
     }
 
     //Methods
-    public void deleteTicket(){
-        Utilities.scrollIntoView();
-        this.getBtnDeleteTicket().click();
+    public void deleteTicket(String depart, String arrive) {
+        Utilities.scrollIntoView(getBtnDeleteTicket(depart,arrive));
+        this.getBtnDeleteTicket(depart,arrive).click();
     }
 
-    public boolean isDeleteButtonDisappear(){
-        try{
-            getBtnDeleteTicket();
+    public boolean isDeleteButtonDisappear(String depart,String arrive) {
+        try {
+            getBtnDeleteTicket(depart, arrive);
             return false;
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             e.printStackTrace();
             return true;
         }

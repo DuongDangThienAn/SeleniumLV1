@@ -130,7 +130,7 @@
                   <span class="method-name">TC15</span>
                   <span class="parameters">(90000, 115000, 140000, 190000, 240000, 290000)</span>
                   <div class="stack-trace">java.lang.AssertionError: Table Title is not displayed correctly expected [Ticket price from Đà Nẵng to Sài Gòn] but found [Ticket price from Sài Gòn to Phan Thiết]
-	at Railway.TC15.TC15(TC15.java:76)
+	at Railway.TC15.TC15(TC15.java:78)
 	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:66)
 	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:109)
 ... Removed 27 stack frames
@@ -197,12 +197,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'TC15')
 data.setCell(0, 2, 'Railway.TC15')
-data.setCell(0, 3, 11176);
+data.setCell(0, 3, 5447);
 window.suiteTableData['Default_Suite']= { tableData: data, tableDiv: 'times-div-Default_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 11 seconds</span>
+              <span class="suite-total-time">Total running time: 5 seconds</span>
               <div id="times-div-Default_Suite">
               </div> <!-- times-div-Default_Suite -->
             </div> <!-- times-div -->
@@ -229,20 +229,24 @@ return data;
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
               <div class="chronological-class-name">Railway.TC15</div> <!-- chronological-class-name -->
-              <div class="configuration-method before">
+              <div class="configuration-class before">
                 <span class="method-name">beforeMethod</span>
                 <span class="method-start">0 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="configuration-method before">
+                <span class="method-name">setTestPreCondition</span>
+                <span class="method-start">1825 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">TC15(90000, 115000, 140000, 190000, 240000, 290000)</span>
-                <span class="method-start">1876 ms</span>
+                <span class="method-start">6497 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-method after">
+              <div class="configuration-class after">
                 <span class="method-name">afterMethod</span>
-                <span class="method-start">13065 ms</span>
-              </div> <!-- configuration-method after -->
+                <span class="method-start">11949 ms</span>
+              </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

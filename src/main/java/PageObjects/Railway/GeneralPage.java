@@ -45,11 +45,11 @@ public class GeneralPage {
         return Constant.WEBDRIVER.findElement(tabChangePassword);
     }
 
-    protected WebElement getTabTimeTable(){
+    protected WebElement getTabTimeTable() {
         return Constant.WEBDRIVER.findElement(tabTimeTable);
     }
 
-    protected WebElement getTabMyTicket(){
+    protected WebElement getTabMyTicket() {
         return Constant.WEBDRIVER.findElement(tabMyTicket);
     }
 
@@ -78,17 +78,19 @@ public class GeneralPage {
         this.getTabLogout().click();
     }
 
-    public void gotoChangePasswordPage(){
+    public void gotoChangePasswordPage() {
         this.getTabChangePassword().click();
     }
 
-    public void gotoTimeTablePage(){
+    public void gotoTimeTablePage() {
         this.getTabTimeTable().click();
     }
 
-    public void gotoMyTicketPage() {this.getTabMyTicket().click();}
+    public void gotoMyTicketPage() {
+        this.getTabMyTicket().click();
+    }
 
-    public String getLoginButtonText(){
+    public String getLoginButtonText() {
         return this.getTabLogin().getText();
     }
 

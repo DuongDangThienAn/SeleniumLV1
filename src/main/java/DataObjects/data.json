@@ -3,9 +3,12 @@
     "DepartFrom": "Nha Trang",
     "ArriveAt": "Sài Gòn",
     "SeatType": "Soft seat with air conditioner",
-    "TicketAmount": "5"
+    "TicketAmount": "5",
+    "TicketPrice": "1350000"
   },
   "TC15": {
+    "DepartStation": "Đà Nẵng",
+    "ArriveStation": "Sài Gòn",
     "HS": "90000",
     "SS": "115000",
     "SSC": "140000",

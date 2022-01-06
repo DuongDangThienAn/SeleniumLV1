@@ -3,10 +3,14 @@ package PageObjects.Railway;
 import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class BookTicketPage extends GeneralPage{
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+
+public class BookTicketPage extends GeneralPage {
 
     //Locator
     private final By lblBookTicketTitle = By.xpath("//div[@id='content']/h1");
@@ -27,147 +31,156 @@ public class BookTicketPage extends GeneralPage{
     private final By tbiBookDate = By.xpath("//div[@class='DivTable']/table//tr[@class='OddRow']/td[count(//th[text()='Book Date']/preceding-sibling::th) + 1]");
     private final By tbiExpiredDate = By.xpath("//div[@class='DivTable']/table//tr[@class='OddRow']/td[count(//th[text()='Expired Date']/preceding-sibling::th) + 1]");
     private final By tbiAmount = By.xpath("//div[@class='DivTable']/table//tr[@class='OddRow']/td[count(//th[text()='Amount']/preceding-sibling::th) + 1]");
+    private final By tbiTicketPrice = By.xpath("//div[@class='DivTable']/table//tr[@class='OddRow']/td[count(//th[text()='Total Price']/preceding-sibling::th) + 1]");
 
     //Elements
-    protected WebElement getLblBookTicketTitle(){
+    protected WebElement getLblBookTicketTitle() {
         return Constant.WEBDRIVER.findElement(lblBookTicketTitle);
     }
 
-    protected WebElement getLblTicketBookSuccessfully(){
+    protected WebElement getLblTicketBookSuccessfully() {
         return Constant.WEBDRIVER.findElement(lblTicketBookedSuccessfully);
     }
 
-    protected WebElement getLblBookTicketErrorMsg(){
+    protected WebElement getLblBookTicketErrorMsg() {
         return Constant.WEBDRIVER.findElement(lblBookTicketErrorMsg);
     }
 
-    protected WebElement getLblTicketAmountErrorMsg(){
+    protected WebElement getLblTicketAmountErrorMsg() {
         return Constant.WEBDRIVER.findElement(lblTicketAmountErrorMsg);
     }
 
-    protected WebElement getBtnBookTicket(){
+    protected WebElement getBtnBookTicket() {
         return Constant.WEBDRIVER.findElement(btnBookTicket);
     }
 
-    protected WebElement getDdlDepartDate(){
+    protected WebElement getDdlDepartDate() {
         return Constant.WEBDRIVER.findElement(ddlDepartDate);
     }
 
-    protected WebElement getDdlDepartFrom(){
+    protected WebElement getDdlDepartFrom() {
         return Constant.WEBDRIVER.findElement(ddlDepartFrom);
     }
 
-    protected WebElement getDdlArriveAt(){
+    protected WebElement getDdlArriveAt() {
         return Constant.WEBDRIVER.findElement(ddlArriveAt);
     }
 
-    protected WebElement getDdlSeatType(){
+    protected WebElement getDdlSeatType() {
         return Constant.WEBDRIVER.findElement(ddlSeatType);
     }
 
-    protected WebElement getDdlTicketAmount(){
+    protected WebElement getDdlTicketAmount() {
         return Constant.WEBDRIVER.findElement(ddlTicketAmount);
     }
 
-    protected WebElement getTbiDepartStation(){
+    protected WebElement getTbiDepartStation() {
         return Constant.WEBDRIVER.findElement(tbiDepartStation);
     }
 
-    protected WebElement getTbiArriveStation(){
+    protected WebElement getTbiArriveStation() {
         return Constant.WEBDRIVER.findElement(tbiArriveStation);
     }
 
-    protected WebElement getTbiSeatType(){
+    protected WebElement getTbiSeatType() {
         return Constant.WEBDRIVER.findElement(tbiSeatType);
     }
 
-    protected WebElement getTbiDepartDate(){
+    protected WebElement getTbiDepartDate() {
         return Constant.WEBDRIVER.findElement(tbiDepartDate);
     }
 
-    protected WebElement getTbiBookDate(){
+    protected WebElement getTbiBookDate() {
         return Constant.WEBDRIVER.findElement(tbiBookDate);
     }
 
-    protected WebElement getTbiExpiredDate(){
+    protected WebElement getTbiExpiredDate() {
         return Constant.WEBDRIVER.findElement(tbiExpiredDate);
     }
 
-    protected WebElement getTbiAmount(){
+    protected WebElement getTbiAmount() {
         return Constant.WEBDRIVER.findElement(tbiAmount);
     }
 
+    protected WebElement getTbiTicketPrice(){
+        return Constant.WEBDRIVER.findElement(tbiTicketPrice);
+    }
+
     //Methods
-    public String getBookTicketTitle(){
+    public String getBookTicketTitle() {
         return this.getLblBookTicketTitle().getText();
     }
 
-    public String getTicketBookedSuccessfullyTitle(){
+    public String getTicketBookedSuccessfullyTitle() {
         return this.getLblTicketBookSuccessfully().getText();
     }
 
-    public void selectDepartDate(String dateOption){
+    public void selectDepartDate(String dateOption) {
         Select select = new Select(getDdlDepartDate());
         select.selectByVisibleText(dateOption);
     }
 
-    public void selectDepartFrom(String departFromOption){
+    public void selectDepartFrom(String departFromOption) {
         Select select = new Select(getDdlDepartFrom());
         select.selectByVisibleText(departFromOption);
     }
 
-    public void selectArriveAt(String arriveAtOption){
+    public void selectArriveAt(String arriveAtOption) {
         Select select = new Select(getDdlArriveAt());
         select.selectByVisibleText(arriveAtOption);
     }
 
-    public void selectSeatType(String seatTypeOption){
+    public void selectSeatType(String seatTypeOption) {
         Select select = new Select(getDdlSeatType());
         select.selectByVisibleText(seatTypeOption);
     }
 
-    public void selectTicketAmount(String ticketAmountOption){
+    public void selectTicketAmount(String ticketAmountOption) {
         Select select = new Select(getDdlTicketAmount());
         select.selectByVisibleText(ticketAmountOption);
     }
 
-    public String getDepartStation(){
+    public String getDepartStation() {
         return this.getTbiDepartStation().getText();
     }
 
-    public String getArriveStation(){
+    public String getArriveStation() {
         return this.getTbiArriveStation().getText();
     }
 
-    public String getSeatType(){
+    public String getSeatType() {
         return this.getTbiSeatType().getText();
     }
 
-    public String getDepartDate(){
+    public String getDepartDate() {
         return this.getTbiDepartDate().getText();
     }
 
-    public String getBookTicketErrorMessage(){
+    public String getBookTicketErrorMessage() {
         return this.getLblBookTicketErrorMsg().getText();
     }
 
-    public String getTicketAmountErrorMessage(){
+    public String getTicketAmountErrorMessage() {
         return this.getLblTicketAmountErrorMsg().getText();
     }
 
-    public String getBookTicketDate(){
+    public String getBookTicketDate() {
         return this.getTbiBookDate().getText();
     }
 
-    public String getExpiredDate(){
+    public String getExpiredDate() {
         return this.getTbiExpiredDate().getText();
     }
 
-    public String getBookedTicketAmount(){
+    public String getTicketPrice(){
+        return this.getTbiTicketPrice().getText();
+    }
+
+    public String getBookedTicketAmount() {
         return this.getTbiAmount().getText();
     }
 
-    public void bookTicketSubmit(){
+    public void bookTicketSubmit() {
         this.getBtnBookTicket().submit();
     }
 

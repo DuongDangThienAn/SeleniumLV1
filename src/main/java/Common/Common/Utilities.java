@@ -3,27 +3,38 @@ package Common.Common;
 import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
 
 public class Utilities {
 
-    public static String getProjectPath(){
+    public static String getProjectPath() {
         return System.getProperty("user.dir");
     }
 
-    public static void scrollIntoView(){
-        WebElement element = Constant.WEBDRIVER.findElement(By.xpath("//a[contains(text(),'Web hosting by Somee.com')]"));
-        ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);",element);
+    public static void scrollIntoView(WebElement scrollToElement) {
+        WebElement element = scrollToElement;
+        ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public static String getDepartDate(){
+    public static String getDepartDate() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime departDay = now.plusDays(7);
-        return  dateTimeFormatter.format(departDay);
+        return dateTimeFormatter.format(departDay);
     }
 
+    public static void waitForElement(By waitConditionLocator){
+        WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, 5, 5000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(waitConditionLocator));
+    }
 }

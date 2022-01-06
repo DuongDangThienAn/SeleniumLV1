@@ -3,30 +3,29 @@ package Railway;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
-import org.json.simple.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class JsonHelper {
-    public static JsonObject getJsonObject(String jsonFilePath){
-        try{
+    public static JsonObject getJsonObject(String jsonFilePath) {
+        try {
             JsonObject object = new JsonObject();
             Gson gson = new Gson();
             JsonReader reader = getJsonReader(jsonFilePath);
-            object = gson.fromJson(reader,JsonObject.class);
+            object = gson.fromJson(reader, JsonObject.class);
             return object;
-        } catch (Exception e){
+        } catch (Exception e) {
             throw e;
         }
     }
 
-    private static JsonReader getJsonReader(String jsonFilePath){
-        try{
+    private static JsonReader getJsonReader(String jsonFilePath) {
+        try {
             JsonReader reader;
             reader = new JsonReader(new FileReader(jsonFilePath));
             return reader;
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             return null;
         }
     }
