@@ -22,7 +22,7 @@ public class TC17 extends TestBase {
     String PID = StringUtilities.generatePID();
     String password = Constant.UNREGISTERED_PASSWORD;
     String confirmPassword = Constant.CONFIRM_PASSWORD;
-    String departDate = Utilities.getDepartDate();
+    String departDate = Utilities.getDepartDate(7);
 
     @BeforeMethod(description = "PRE-CONDITION: Create and activate a new account")
     public void setTestPreCondition(){

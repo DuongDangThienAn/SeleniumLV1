@@ -7,16 +7,12 @@ import PageObjects.Railway.BookTicketPage;
 import PageObjects.Railway.HomePage;
 import PageObjects.Railway.LoginPage;
 import com.google.gson.JsonObject;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
-
-public class TC14 extends TestBase {
+public class FTTC401 extends TestBase{
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
     BookTicketPage bookTicketPage = new BookTicketPage();
@@ -33,8 +29,8 @@ public class TC14 extends TestBase {
         testPreCondition.registerPreCondition(email, password, confirmPassword, PID);
     }
 
-    @Test(description = "TC-14:User can book many tickets at a time", dataProvider = "data-provider14")
-    public void TC14(String departFrom, String arriveAt, String seatType, String ticketAmount, String ticketPrice) throws InterruptedException {
+    @Test(description = "FTTC401 - User can book 1 ticket at a time", dataProvider = "data-providerFTTC401")
+    public void FTTC401(String departFrom, String arriveAt, String seatType, String ticketAmount, String ticketPrice) throws InterruptedException {
 
         System.out.println("STEP-01: Navigate to QA Railway Website");
         homePage.open();
@@ -49,7 +45,7 @@ public class TC14 extends TestBase {
         System.out.println("STEP-04: Select Depart Date from the list");
         bookTicketPage.selectDepartDate(departDate);
 
-        System.out.println("STEP-05: Select 'Nha Trang' for 'Depart from' and 'Sài Gòn' for 'Arrive at'.");
+        System.out.println("STEP-05: Select 'Huế' for 'Depart from' and 'Nha Trang' for 'Arrive at'.");
         bookTicketPage.selectDepartFrom(departFrom);
         Utilities.waitForElement();
         bookTicketPage.selectArriveAt(arriveAt);
@@ -57,7 +53,7 @@ public class TC14 extends TestBase {
         System.out.println("STEP-06: Select 'Soft seat with air conditioner' for 'Seat type'");
         bookTicketPage.selectSeatType(seatType);
 
-        System.out.println("STEP-07: Select '5' for 'Ticket amount'");
+        System.out.println("STEP-07: Select '4' for 'Ticket amount'");
         bookTicketPage.selectTicketAmount(ticketAmount);
 
         System.out.println("STEP-08: Click on 'Book Ticket' button");
@@ -97,23 +93,23 @@ public class TC14 extends TestBase {
         String expectedTicketPrice = ticketPrice;
 
         Assert.assertEquals(actualTicketPrice, expectedTicketPrice, "Ticket Price is not same as Ticket Price that user have booked");
-
     }
 
-    @DataProvider(name = "data-provider14")
+    @DataProvider(name = "data-providerFTTC401")
     public Object[][] dataProvider() {
         String filePath = Utilities.getProjectPath() + "\\src\\main\\java\\DataObjects\\data.json";
         JsonObject jsonObject = JsonHelper.getJsonObject(filePath);
-        JsonObject dataTC14 = jsonObject.getAsJsonObject(this.getClass().getSimpleName());
-        String DepartFrom = dataTC14.get("DepartFrom").getAsString();
-        String ArriveAt = dataTC14.get("ArriveAt").getAsString();
-        String SeatType = dataTC14.get("SeatType").getAsString();
-        String TicketAmount = dataTC14.get("TicketAmount").getAsString();
-        String TicketPrice = dataTC14.get("TicketPrice").getAsString();
+        JsonObject dataFTTC401 = jsonObject.getAsJsonObject(this.getClass().getSimpleName());
+        String DepartFrom = dataFTTC401.get("DepartFrom").getAsString();
+        String ArriveAt = dataFTTC401.get("ArriveAt").getAsString();
+        String SeatType = dataFTTC401.get("SeatType").getAsString();
+        String TicketAmount = dataFTTC401.get("TicketAmount").getAsString();
+        String TicketPrice = dataFTTC401.get("TicketPrice").getAsString();
 
         Object[][] objects = new Object[][]{
                 {DepartFrom, ArriveAt, SeatType, TicketAmount, TicketPrice}
         };
         return objects;
     }
+
 }

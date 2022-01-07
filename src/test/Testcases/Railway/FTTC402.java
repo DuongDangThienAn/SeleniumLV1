@@ -8,13 +8,12 @@ import PageObjects.Railway.HomePage;
 import PageObjects.Railway.LoginPage;
 import PageObjects.Railway.MyTicketPage;
 import com.google.gson.JsonObject;
-import org.openqa.selenium.Alert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class TC16 extends TestBase {
+public class FTTC402 extends TestBase{
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
     BookTicketPage bookTicketPage = new BookTicketPage();
@@ -25,16 +24,16 @@ public class TC16 extends TestBase {
     String PID = StringUtilities.generatePID();
     String password = Constant.UNREGISTERED_PASSWORD;
     String confirmPassword = Constant.CONFIRM_PASSWORD;
-    String departDate = Utilities.getDepartDate(7);
+    String filteredDepartDate = Utilities.getDepartDate(8);
+    int timesToBookTicket = 7;
 
     @BeforeMethod(description = "PRE-CONDITION: Create and activate a new account")
     public void setTestPreCondition(){
-        testPreCondition.registerPreCondition(email,password,confirmPassword,PID);
+        testPreCondition.registerPreCondition(email, password, confirmPassword, PID);
     }
 
-    @Test(description = "TC16 - User can cancel a ticket", dataProvider = "data-provider16")
-    public void TC16(String departFrom, String arriveAt, String seatType, String ticketAmount) throws InterruptedException {
-
+    @Test(description = "FTTC402 - User can filter 'Manage ticket' table with both Depart Station and Arrive station",dataProvider = "data-providerFTTC403")
+    public void FTTC402(String departFrom, String arriveAt, String seatType, String ticketAmount) throws InterruptedException {
         System.out.println("STEP-01: Navigate to QA Railway Website");
         homePage.open();
 
@@ -42,33 +41,35 @@ public class TC16 extends TestBase {
         loginPage.gotoLoginPage();
         loginPage.login(email, password);
 
-        System.out.println("STEP-03: Book a ticket");
-        bookTicketPage.gotoBookTicketPage();
-        bookTicketPage.selectDepartDate(departDate);
-        bookTicketPage.selectDepartFrom(departFrom);
-        Thread.sleep(1000);
-        bookTicketPage.selectArriveAt(arriveAt);
-        bookTicketPage.selectSeatType(seatType);
-        bookTicketPage.selectTicketAmount(ticketAmount);
-        bookTicketPage.bookTicketSubmit();
+        System.out.println("STEP-03: Book more than 6 tickets with different DepartDate");
+        bookTicketPage.bookTicketMultipleTime(departFrom, arriveAt, seatType, ticketAmount,timesToBookTicket);
 
-        System.out.println("STEP-04: Click on 'My Ticket Tab'");
+        System.out.println("STEP-04: Click on My Ticket Tab");
         myTicketPage.gotoMyTicketPage();
-        String deleteTicketValue = myTicketPage.getBtnDeleteTicket(departFrom,arriveAt).getAttribute("onclick");
-        Thread.sleep(1000);
 
-        System.out.println("STEP-05: Click on ' Click on 'Cancel' button of ticket which user want to cancel.");
-        myTicketPage.deleteTicket(departFrom,arriveAt);
+        System.out.println("STEP-05: Input one of Depart Date in 'Depart Station' and 'Arrive Station' text boxes");
+        myTicketPage.selectDepartStationFilter(departFrom);
+        myTicketPage.selectArriveStationFilter(arriveAt);
 
-        System.out.println("STEP-06: Click on 'OK; button on Confirmation message 'Are you sure?'");
-        Alert alert = Constant.WEBDRIVER.switchTo().alert();
-        alert.accept();
+        System.out.println("STEP-06: Click 'Apply Filter' button");
+        myTicketPage.clickApplyFilter();
 
-        Assert.assertTrue(myTicketPage.isDeleteButtonDisappear(departFrom,arriveAt) == true || (myTicketPage.isDeleteButtonDisappear(departFrom,arriveAt) == false && deleteTicketValue != myTicketPage.getBtnDeleteTicket(departFrom,arriveAt).getAttribute("onclick")), "Cancel Button is disappear");
+        String[] actualDepartStations = myTicketPage.getActualDepartStations(departFrom,arriveAt);
+        String[] actualArriveStations = myTicketPage.getActualArriveStations(departFrom,arriveAt);
+        for(int i =0; i<timesToBookTicket;i++){
+            String actualDepartStation = actualDepartStations[i];
+            String expectedDepartStation = departFrom;
+
+            Assert.assertEquals(actualDepartStation,expectedDepartStation,"Depart Station in table doesn't match with Depart Station in filter");
+
+            String actualArriveStation = actualArriveStations[i];
+            String expectedArriveStation = arriveAt;
+
+            Assert.assertEquals(actualArriveStation,expectedArriveStation,"Arrive Station in table doesn't match with Arrive Station in filter");
+        }
 
     }
-
-    @DataProvider(name = "data-provider16")
+    @DataProvider(name = "data-providerFTTC403")
     public Object[][] dataProvider() {
         String filePath = Utilities.getProjectPath() + "\\src\\main\\java\\DataObjects\\data.json";
         JsonObject jsonObject = JsonHelper.getJsonObject(filePath);
@@ -83,4 +84,5 @@ public class TC16 extends TestBase {
         };
         return objects;
     }
+
 }

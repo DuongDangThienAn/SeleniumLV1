@@ -1,5 +1,6 @@
 package PageObjects.Railway;
 
+import Common.Common.Utilities;
 import Common.Constant.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -23,6 +24,8 @@ public class BookTicketPage extends GeneralPage {
     private final By lblTicketBookedSuccessfully = By.xpath("//div[@id='content']/h1");
     private final By lblBookTicketErrorMsg = By.xpath("//div[@id='content']/div/p[@class='message error']");
     private final By lblTicketAmountErrorMsg = By.xpath("//div[@id='content']/div/form//ol/li/label[@class='validation-error']");
+    private final By optSelectedDepartFromOption = By.xpath("//div[@id='content']//form//ol//li/select[@name='DepartStation']/option[@selected='selected']");
+    private final By optSelectedArriveAtFromOption = By.xpath("//div[@id='content']//form//ol//li/span/select[@name='ArriveStation']/option[@selected='selected']");
 
     private final By tbiDepartStation = By.xpath("//div[@class='DivTable']/table//tr[@class='OddRow']/td[count(//th[text()='Depart Station']/preceding-sibling::th) + 1]");
     private final By tbiArriveStation = By.xpath("//div[@class='DivTable']/table//tr[@class='OddRow']/td[count(//th[text()='Arrive Station']/preceding-sibling::th) + 1]");
@@ -72,6 +75,14 @@ public class BookTicketPage extends GeneralPage {
 
     protected WebElement getDdlTicketAmount() {
         return Constant.WEBDRIVER.findElement(ddlTicketAmount);
+    }
+
+    protected WebElement getOptSelectedDepartFromOption(){
+        return Constant.WEBDRIVER.findElement(optSelectedDepartFromOption);
+    }
+
+    protected WebElement getOptSelectedArriveAtOption(){
+        return Constant.WEBDRIVER.findElement(optSelectedArriveAtFromOption);
     }
 
     protected WebElement getTbiDepartStation() {
@@ -140,6 +151,14 @@ public class BookTicketPage extends GeneralPage {
         select.selectByVisibleText(ticketAmountOption);
     }
 
+    public String getSelectedDepartFromOption(){
+        return this.getOptSelectedDepartFromOption().getText();
+    }
+
+    public String getSelectedArriveAtOption(){
+        return this.getOptSelectedArriveAtOption().getText();
+    }
+
     public String getDepartStation() {
         return this.getTbiDepartStation().getText();
     }
@@ -182,6 +201,21 @@ public class BookTicketPage extends GeneralPage {
 
     public void bookTicketSubmit() {
         this.getBtnBookTicket().submit();
+    }
+
+    public void bookTicketMultipleTime(String depart, String arrive, String seatType, String amount, int times) throws InterruptedException {
+
+        for(int i = 0; i < times; i++){
+            int dayToBook = 7 + i;
+            this.gotoBookTicketPage();
+            this.selectDepartDate(Utilities.getDepartDate(dayToBook));
+            this.selectDepartFrom(depart);
+            Utilities.waitForElement();
+            this.selectArriveAt(arrive);
+            this.selectSeatType(seatType);
+            this.selectTicketAmount(amount);
+            this.bookTicketSubmit();
+        }
     }
 
 }

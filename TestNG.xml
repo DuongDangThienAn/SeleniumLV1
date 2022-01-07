@@ -1,12 +1,11 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite1" verbose="1" >
-    <test name="Test" >
-<!--        <classes>-->
-<!--            <class name="NoPackageTest" />-->
-<!--        </classes>-->
-        <packages>
-            <package name="Railway"></package>
-        </packages>
+    <test name="Final Course" >
+        <classes>
+            <class name="Railway.FTTC401" />
+            <class name="Railway.FTTC402" />
+            <class name="Railway.FTTC403" />
+        </classes>
     </test>
 </suite>

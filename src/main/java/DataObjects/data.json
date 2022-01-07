@@ -27,6 +27,23 @@
     "ArriveAt": "Sài Gòn",
     "SeatType": "Soft seat with air conditioner",
     "TicketAmount": "10"
+  },
+  "FTTC401": {
+    "DepartFrom": "Huế",
+    "ArriveAt": "Nha Trang",
+    "SeatType": "Soft seat with air conditioner",
+    "TicketAmount": "4",
+    "TicketPrice": "1200000"
+  },
+  "FTTC403": {
+    "DepartStation" : "Huế",
+    "ArriveStation": "Nha Trang",
+    "DepartTime": "8:00"
+  },
+  "FTTC402": {
+    "DepartFrom": "Nha Trang",
+    "ArriveAt": "Sài Gòn",
+    "SeatType": "Soft seat with air conditioner",
+    "TicketAmount": "1"
   }
-
 }

@@ -9,6 +9,7 @@ public class TimeTablePage extends GeneralPage {
     String tbiDepartStation = "//div[@id='content']//table//tr[@class='OddRow']/td[text()='%s']/preceding-sibling::td[text()='%s']";
     String tbiArriveStation = "//div[@id='content']//table//tr[@class='OddRow']/td[text()='%s']/following-sibling::td[text()='%s']";
     String lnkCheckPrice = "//div[@id='content']//table//tr[@class='OddRow']/td[text()='%s']/following-sibling::td[text()='%s']/../td/a[@href='TicketPricePage.cshtml?id1=1&id2=2']";
+    String lnkBookTicket = "//div[@id='content']//table//tr/td[text()='%s']/following-sibling::td[text()='%s']/following-sibling::td[text()='%s']/../td/a[@href='BookTicketPage.cshtml?id1=5&id2=3']";
 
     //Elements
     public WebElement getTbiDepartStation(String depart, String arrive) {
@@ -23,6 +24,10 @@ public class TimeTablePage extends GeneralPage {
         return Constant.WEBDRIVER.findElement(By.xpath(String.format(lnkCheckPrice, depart, arrive)));
     }
 
+    public WebElement getLnkBookTicket(String depart, String arrive, String time){
+        return Constant.WEBDRIVER.findElement(By.xpath(String.format(lnkBookTicket, depart, arrive, time)));
+    }
+
     //Methods
 
     public String getDepartStation(String depart, String arrive) {
@@ -35,5 +40,9 @@ public class TimeTablePage extends GeneralPage {
 
     public void clickCheckPrice(String depart, String arrive) {
         this.getLnkCheckPrice(depart, arrive).click();
+    }
+
+    public void clickBookTicketLink(String depart, String arrive, String time){
+        this.getLnkBookTicket(depart, arrive, time).click();
     }
 }

@@ -3,10 +3,7 @@ package Railway;
 import Common.Common.StringUtilities;
 import Common.Common.Utilities;
 import Common.Constant.Constant;
-import PageObjects.Railway.HomePage;
-import PageObjects.Railway.LoginPage;
-import PageObjects.Railway.TicketPricePage;
-import PageObjects.Railway.TimeTablePage;
+import PageObjects.Railway.*;
 import com.google.gson.JsonObject;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -18,6 +15,7 @@ public class TC15 extends TestBase{
     LoginPage loginPage = new LoginPage();
     TimeTablePage timeTablePage = new TimeTablePage();
     TicketPricePage ticketPricePage = new TicketPricePage();
+    BookTicketPage bookTicketPage = new BookTicketPage();
     TestPreCondition testPreCondition = new TestPreCondition();
 
     String email = StringUtilities.generateRandomEmail();

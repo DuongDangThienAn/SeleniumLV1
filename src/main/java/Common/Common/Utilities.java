@@ -26,15 +26,16 @@ public class Utilities {
         ((JavascriptExecutor) Constant.WEBDRIVER).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public static String getDepartDate() {
+    public static String getDepartDate(int day) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime departDay = now.plusDays(7);
+        LocalDateTime departDay = now.plusDays(day);
         return dateTimeFormatter.format(departDay);
     }
 
-    public static void waitForElement(By waitConditionLocator){
-        WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, 5, 5000);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(waitConditionLocator));
+    public static void waitForElement() throws InterruptedException {
+        Thread.sleep(1000);
+        Constant.WEBDRIVER.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+        Constant.WEBDRIVER.manage().timeouts().pageLoadTimeout(10,TimeUnit.SECONDS);
     }
 }
